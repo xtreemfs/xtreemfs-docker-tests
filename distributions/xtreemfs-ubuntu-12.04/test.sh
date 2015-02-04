@@ -9,14 +9,29 @@
 mkfs.xtreemfs localhost/test-volume
 mkdir test_volume
 echo "created directory"
-mount.xtreemfs localhost/test-volume test_volume
+mount.xtreemfs --max-tries=3 localhost/test-volume test_volume
+
+if [ $? -ne 0 ]; then
+    exit 1
+fi
+
 echo "mounted test volume"
 #write
 dd if=/dev/urandom of=test_volume/test.txt bs=4k count=256
+
+if [ $? -ne 0 ]; then
+    exit 1
+fi
+
 echo "written some random data to test volume"
 
 #unmount volume
 umount.xtreemfs test_volume
+
+if [ $? -ne 0 ]; then
+    exit 1
+fi
+
 echo "unmounted test volume"
 
 #stop xtreemfs servers

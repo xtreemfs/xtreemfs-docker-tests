@@ -1,4 +1,4 @@
-FROM opensuse
+FROM opensuse:13.2
 MAINTAINER Christoph Kleineweber <kleineweber@zib.de>
 
 RUN zypper addrepo "http://download.opensuse.org/repositories/home:/xtreemfs/openSUSE_13.2/home:xtreemfs.repo"
