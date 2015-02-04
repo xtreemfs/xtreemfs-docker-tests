@@ -17,6 +17,7 @@ docker pull ubuntu
 docker pull opensuse
 
 ret=0
+failed=""
 
 #run containers
 for DISTRIBUTION_DIR in $DISTRIBUTION_DIRS; do
@@ -30,11 +31,16 @@ for DISTRIBUTION_DIR in $DISTRIBUTION_DIRS; do
    if [ $? -ne 0 ]; then
        ret=`expr $ret + 1`
        echo "$DISTRIBUTION_DIR test failed!"
+       failed=$(printf "%s\n%s" "$failed" "$DISTRIBUTION_DIR")
    fi
 
    #remove container and image
    docker rm $CONTAINER_NAME 
    docker rmi xtreemfs/$DISTRIBUTION_DIR
 done
+
+if [ $ret -ne 0 ]; then
+    echo "The following tests failed: $failed"
+fi
 
 exit $ret
