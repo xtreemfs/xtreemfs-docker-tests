@@ -22,6 +22,7 @@ for DISTRIBUTION_DIR in $DISTRIBUTION_DIRS; do
    # run docker container
    docker run --name=$CONTAINER_NAME --privileged xtreemfs/$DISTRIBUTION_DIR ./test.sh
 
-   #remove container
+   #remove container and image
    docker rm $CONTAINER_NAME 
+   docker rmi xtreemfs/$DISTRIBUTION_DIR
 done
