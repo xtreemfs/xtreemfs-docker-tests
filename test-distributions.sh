@@ -15,6 +15,7 @@ fi
 
 docker pull ubuntu
 docker pull opensuse
+docker pull centos
 
 ret=0
 failed=""
