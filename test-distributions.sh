@@ -17,6 +17,7 @@ docker pull ubuntu
 docker pull opensuse
 docker pull centos
 docker pull fedora
+docker pull debian
 
 ret=0
 failed=""
