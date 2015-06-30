@@ -25,6 +25,8 @@ fi
 
 echo "written some random data to test volume"
 
+#{{CUSTOMCOMMAND}}
+
 #unmount volume
 umount.xtreemfs test_volume
 
