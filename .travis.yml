@@ -9,4 +9,4 @@ env:
 services:
   - docker
 script:
-  - ./test-distributions.sh
+  - ./test-distributions.sh $DISTRIBUTION
