@@ -10,7 +10,7 @@ CONTAINER_NAME="test-container"
 if [[ "$1" == "all" || "$1" == "" ]]; then
    DISTRIBUTION_DIRS=$(ls $DIR | grep "xtreemfs-")
 else
-   for i in $*; do DISTRIBUTION_DIRS="$DISTRIBUTION_DIRS xtreemfs-$i"; done
+  for i in $*; do DISTRIBUTION_DIRS="$DISTRIBUTION_DIRS $(ls $DIR | grep "xtreemfs-$i")"; done
 fi
 
 docker pull ubuntu
@@ -27,7 +27,7 @@ for DISTRIBUTION_DIR in $DISTRIBUTION_DIRS; do
 
    # build docker image
    docker build -t xtreemfs/$DISTRIBUTION_DIR $DIR/$DISTRIBUTION_DIR
-   
+
    # run docker container
    docker run --name=$CONTAINER_NAME --privileged xtreemfs/$DISTRIBUTION_DIR ./test.sh
 
@@ -38,7 +38,7 @@ for DISTRIBUTION_DIR in $DISTRIBUTION_DIRS; do
    fi
 
    #remove container and image
-   docker rm $CONTAINER_NAME 
+   docker rm $CONTAINER_NAME
    docker rmi xtreemfs/$DISTRIBUTION_DIR
 done
 

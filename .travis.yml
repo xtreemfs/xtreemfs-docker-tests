@@ -1,4 +1,11 @@
 sudo: required
+env:
+  matrix:
+    - DISTRIBUTION=ubuntu
+    - DISTRIBUTION=debian
+    - DISTRIBUTION=opensuse
+    - DISTRIBUTION=centos
+    - DISTRIBUTION=fedora
 services:
   - docker
 script:
