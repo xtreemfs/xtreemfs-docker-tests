@@ -17,4 +17,4 @@ env:
 services:
   - docker
 script:
-  - ./test-distribution.sh $DISTRIBUTION
+  - ./test-distributions.sh $DISTRIBUTION
